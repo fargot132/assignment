@@ -3,6 +3,7 @@
 namespace App\Service\Cart;
 
 use App\Service\Catalog\Product;
+use Doctrine\Common\Collections\Collection;
 
 interface Cart
 {
@@ -13,4 +14,5 @@ interface Cart
      * @return Product[]
      */
     public function getProducts(): iterable;
+    public function getCartProducts(): Collection;
 }

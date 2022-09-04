@@ -3,11 +3,18 @@
 POST https://localhost/products
 Content-Type: application/x-www-form-urlencoded
 
-name=Example product 1&price=1100&max_quantity=5
+name=Example product 2&price=1100&max_quantity=2
+
+### Patch product in catalog
+
+PATCH https://localhost/products/a01f3e52-5015-4f0b-8252-227f94bed918
+Content-Type: application/x-www-form-urlencoded
+
+name=New name 1&price=2300&max_quantity=6
 
 ### Remove product from catalog
 
-DELETE https://localhost/products/ec0c615d-0571-4e4b-9582-59a7edaf8117
+DELETE https://localhost/products/e9191538-f4f3-48b8-8e92-246817f11254
 
 ### List products
 
@@ -21,11 +28,11 @@ POST https://localhost/cart
 
 ### Add product to cart
 
-PUT https://localhost/cart/{{cart_id}}/c9c74236-7545-4c4c-a877-0561b67d0618
+PUT https://localhost/cart/{{cart_id}}/62e401c2-92ba-45ee-b9ea-add32a1deaae
 
 ### Remove product from cart
 
-DELETE https://localhost/cart/{{cart_id}}/00c5560b-efb9-4277-beb8-5b4feb594779
+DELETE https://localhost/cart/{{cart_id}}/a01f3e52-5015-4f0b-8252-227f94bed918
 
 ### Show cart
 

@@ -57,4 +57,17 @@ class ProductRepository implements ProductProvider, ProductService
             $this->entityManager->flush();
         }
     }
+
+    public function patch(string $id, string $name, int $price, int $maxQuantity): Product
+    {
+        $product = $this->repository->find($id);
+        if ($product !== null) {
+            $product->setName($name);
+            $product->setPrice($price);
+            $product->setMaxQuantity($maxQuantity);
+            $this->entityManager->persist($product);
+            $this->entityManager->flush();
+        }
+        return $product;
+    }
 }
