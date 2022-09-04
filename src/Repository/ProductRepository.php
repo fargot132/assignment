@@ -23,6 +23,7 @@ class ProductRepository implements ProductProvider, ProductService
         return $this->repository->createQueryBuilder('p')
             ->setMaxResults($count)
             ->setFirstResult($page * $count)
+            ->orderBy('p.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;
@@ -38,9 +39,9 @@ class ProductRepository implements ProductProvider, ProductService
         return $this->repository->find($productId) !== null;
     }
 
-    public function add(string $name, int $price): Product
+    public function add(string $name, int $price, int $maxQuantity): Product
     {
-        $product = new \App\Entity\Product(Uuid::uuid4(), $name, $price);
+        $product = new \App\Entity\Product(Uuid::uuid4(), $name, $price, $maxQuantity);
 
         $this->entityManager->persist($product);
         $this->entityManager->flush();

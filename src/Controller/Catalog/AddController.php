@@ -25,15 +25,16 @@ class AddController extends AbstractController implements MessageBusAwareInterfa
     {
         $name = trim($request->get('name'));
         $price = (int)$request->get('price');
+        $maxQuantity = (int)($request->get('max_quantity') ?: 1);
 
-        if ($name === '' || $price < 1) {
+        if ($name === '' || $price < 1 || $maxQuantity < 1) {
             return new JsonResponse(
-                $this->errorBuilder->__invoke('Invalid name or price.'),
+                $this->errorBuilder->__invoke('Invalid name, price or quantity.'),
                 Response::HTTP_UNPROCESSABLE_ENTITY
             );
         }
 
-        $this->dispatch(new AddProductToCatalog($name, $price));
+        $this->dispatch(new AddProductToCatalog($name, $price, $maxQuantity));
 
         return new Response('', Response::HTTP_ACCEPTED);
     }

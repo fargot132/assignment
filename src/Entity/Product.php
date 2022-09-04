@@ -29,12 +29,12 @@ class Product implements \App\Service\Catalog\Product
     #[ORM\Column(type: 'datetime_immutable', nullable: false)]
     private DateTimeImmutable $updatedAt;
 
-    public function __construct(string $id, string $name, int $price, int $maxCartQuantity = 1)
+    public function __construct(string $id, string $name, int $price, int $maxQuantity = 1)
     {
         $this->id = Uuid::fromString($id);
         $this->name = $name;
         $this->priceAmount = $price;
-        $this->maxCartQuantity = $maxCartQuantity;
+        $this->maxCartQuantity = $maxQuantity;
     }
 
     public function getId(): string
@@ -93,26 +93,26 @@ class Product implements \App\Service\Catalog\Product
     }
 
     /**
-     * @param string $priceAmount
+     * @param string $price
      */
-    public function setPriceAmount(string $priceAmount): void
+    public function setPrice(string $price): void
     {
-        $this->priceAmount = $priceAmount;
+        $this->priceAmount = $price;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getMaxCartQuantity(): string
+    public function getMaxQuantity(): int
     {
         return $this->maxCartQuantity;
     }
 
     /**
-     * @param string $maxCartQuantity
+     * @param int $maxQuantity
      */
-    public function setMaxCartQuantity(string $maxCartQuantity): void
+    public function setMaxQuantity(int $maxQuantity): void
     {
-        $this->maxCartQuantity = $maxCartQuantity;
+        $this->maxCartQuantity = $maxQuantity;
     }
 }

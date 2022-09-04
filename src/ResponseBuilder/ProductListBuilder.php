@@ -7,7 +7,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class ProductListBuilder
 {
-    public function __construct(private UrlGeneratorInterface $urlGenerator) { }
+    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    {
+    }
 
     /**
      * @param Product[] $products
@@ -34,7 +36,9 @@ class ProductListBuilder
             $data['products'][] = [
                 'id' => $product->getId(),
                 'name' => $product->getName(),
-                'price' => $product->getPrice()
+                'price' => $product->getPrice(),
+                'max_quantity' => $product->getMaxQuantity(),
+                'added_at' => $product->getCreatedAt()->format('Y-m-d H:i:s'),
             ];
         }
 

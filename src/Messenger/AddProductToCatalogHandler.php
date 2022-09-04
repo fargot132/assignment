@@ -11,6 +11,6 @@ class AddProductToCatalogHandler implements MessageHandlerInterface
 
     public function __invoke(AddProductToCatalog $command): void
     {
-        $this->service->add($command->name, $command->price);
+        $this->service->add($command->name, $command->price, $command->maxQuantity);
     }
 }
